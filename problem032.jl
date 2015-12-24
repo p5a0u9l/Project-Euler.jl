@@ -1,3 +1,7 @@
+#!/usr/local/bin/julia
+
+println("Find the sum of all products whose multiplicand/multiplier/product")
+println(" identity can be written as a 1 through 9 pandigital.\n")
 
 function p032()
     result = []
@@ -10,7 +14,7 @@ function p032()
         end        
     end
     result = sum(unique(result))
-    println("Sum of products: $result")
+    println("Sum of products: $result\n")
 end
 
 function pandigital(a, b)
@@ -28,5 +32,4 @@ function pandigital(a, b)
     p
 end    
     
-
 @time p032()

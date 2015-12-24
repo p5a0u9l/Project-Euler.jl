@@ -1,6 +1,8 @@
+#!/usr/local/bin/julia
+         
+println("Find the sum of all the numbers that can be written as the") 
+println("sum of fifth powers of their digits.\n")
 
-# Find the sum of all the numbers that can be written as the 
-# sum of fifth powers of their digits.
 function p030(N)
     b = []
     for i = 2:N
@@ -10,7 +12,7 @@ function p030(N)
         end
     end
     println(b)
-    println("Sum of fifth digit powers: ", sum(b))
+    println("Sum of fifth digit powers: ", sum(b), "\n")
 end
 
 @time p030(200000)

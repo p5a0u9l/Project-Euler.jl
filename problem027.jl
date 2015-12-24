@@ -1,3 +1,5 @@
+#!/usr/local/bin/julia
+
 function p027(N)
     nMax = 0
     for a = -N+1:0
@@ -18,4 +20,5 @@ function p027(N)
     end
 end
 
+#Find the product of the coefficients, a and b, for the quadratic expression that produces the maximum number of primes for consecutive values of n, starting with n = 0.
 @time p027(1000)

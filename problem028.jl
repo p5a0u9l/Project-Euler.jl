@@ -1,5 +1,8 @@
-# What is the sum of the numbers on the diagonals in a 
-# 1001 by 1001 spiral formed in the same way?
+#!/usr/local/bin/julia
+
+println("What is the sum of the numbers on the diagonals in a ")
+println("1001 by 1001 spiral formed in the same way?")
+
 function p028(N)
     direction = [[0 1]; [+1 0]; [0 -1]; [-1 0]; [0 1]]
     A = zeros(Int64, N, N)

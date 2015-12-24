@@ -12,7 +12,10 @@ function p035(N)
                 t = parse(Int, str[vec(circshift(a, i))])
                 if ~isprime(t); allprime = false; break; end
             end
-            if allprime; count += 1; end
+            if allprime 
+                count += 1
+                println("Circular prime: $n")
+            end
         end
     end
     println("Circular prime count is $(count + 2)")

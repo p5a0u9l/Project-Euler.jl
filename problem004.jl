@@ -1,6 +1,5 @@
-# Find the value of d < 1000 
-# for which 1/d contains the longest recurring cycle in its 
-# decimal fraction part.
+#!/usr/local/bin/julia
+
 function p004(N)
     maxCircular = 0
     maxDiv = 1
@@ -26,7 +25,8 @@ function p004(N)
             end
         end
     end
-    println("Fraction: 1/$maxDiv, Circular Length: $maxCircular")
+    println("The denominator which generates the longest recurring ")
+    println("cycle is $maxDiv, with length $maxCircular")
 end
 
 Base.MPFR.set_bigfloat_precision(2^13)

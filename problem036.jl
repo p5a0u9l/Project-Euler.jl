@@ -6,7 +6,7 @@ function p036(N)
         b = bin(n)
         if reverse(d) == d && reverse(b) == b
             s += n
-#             println("Palindromic: $d, $b")
+            println("Palindromic: $d, $b")
         end
     end
     println("Sum is $s")
