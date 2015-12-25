@@ -24,7 +24,7 @@ function p037(N)
             end
         end
         if tprime
-            println("Truncatable: $s")
+            println("Truncatable: $n")
             s += n; c += 1;
         end
     end
