@@ -1,0 +1,10 @@
+#!/usr/local/bin/julia
+
+# Problem Statement
+println("We shall say that an n-digit number is pandigital if it makes use of all the") 
+println("digits 1 to n exactly once. For example, 2143 is a 4-digit pandigital and is also") 
+println("prime. What is the largest n-digit pandigital prime that exists?")
+
+# Solution   
+
+
