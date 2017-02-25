@@ -1,19 +1,32 @@
+"""
+The fraction 49/98 is a curious fraction, as an inexperienced mathematician in attempting to simplify it may incorrectly believe that 49/98 = 4/8, which is correct, is obtained by cancelling the 9s.
 
-function p033()
+We shall consider fractions like, 30/50 = 3/5, to be trivial examples.
+
+There are exactly four non-trivial examples of this type of fraction, less than one in value, and containing two digits in the numerator and denominator.
+
+If the product of these four fractions is given in its lowest common terms, find the value of the denominator.
+"""
+
+module problem033
+
+
+function solve()
     for n = 10:98, d = n + 1:99
-        num = string(n); den = string(d);
+        numer = string(n)
+        denom = string(d);
         for i = 1:2, j = 1:2
-            if in('0', num) || in('0', den); continue; end
-            if num[i] == den[j]
+            if in('0', numer) || in('0', denom); continue; end
+            if numer[i] == denom[j]
                 f = n/d
-                num_ = num[(i % 2) + 1]; den_ = den[(j % 2) + 1];
+                num_ = numer[(i % 2) + 1]; den_ = denom[(j % 2) + 1];
                 if f == parse(Int, num_)/parse(Int, den_)
-                    println("$num/$den = $num_/$den_ = $f")
+                    println("$numer/$denom = $num_/$den_ = $f")
                 end
             end
         end
     end
+    f
 end
 
-@time p033();
-
+end

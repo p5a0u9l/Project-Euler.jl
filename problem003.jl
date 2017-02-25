@@ -1,9 +1,15 @@
-# Problem 003
-# What is the largest prime factor of the number 600851475143 ?
-function p003(N)
+"""
+The prime factors of 13195 are 5, 7, 13 and 29.
+
+What is the largest prime factor of the number 600851475143?
+"""
+
+module problem003
+
+function solve()
+    N = 600851475143
     maxPrime = 0
     for i::Int64 = 2:round(sqrt(N))
-#         println(N)
         if N % i == 0
             k = div(N, i)
             if isprime(i)
@@ -18,8 +24,7 @@ function p003(N)
             end
         end
     end
-    maxPrime 
+    maxPrime
 end
 
-@time p003(600851475143)
-
+end

@@ -1,16 +1,12 @@
-#!/usr/local/bin/julia
+"""
+problem statement from projecteuler.net
+"""
 
-# Problem Statement
-println()
-println()
-println()
-println()
-println()
-println()
-println()
+module problemNNN
 
-# Solution   
-function main()
+function solve()
+    result = []
+    result
 end
 
-@time main()
+end
