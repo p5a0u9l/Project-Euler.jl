@@ -1,43 +1,44 @@
 """
-A palindromic number reads the same both ways. The largest palindrome made from the product of
-two 2-digit numbers is 9009 = 91 × 99.
+A palindromic number reads the same both ways. The largest palindrome made
+from the product of two 2-digit numbers is 9009 = 91 × 99.
 
 Find the largest palindrome made from the product of two 3-digit numbers.
 """
 
 module problem004
 
-Base.MPFR.set_bigfloat_precision(2^13)
+function is_palindrome(number)
+    num_as_str = string(number)
+    return num_as_str == reverse(num_as_str)
+end
 
-function solve()
-    N = 1000
-    maxCircular = 0
-    maxDiv = 1
-    for d = 2:N-1
-        c = 0;
-        m = 0
-        bigstr = replace(string(BigInt(1)/d), ".", "")
-        bigstr = replace(bigstr, "e-01", "")[2:end-2]
-        K = length(bigstr) # 77
-        for i = 1:div(K, 2)
-            a = bigstr[1:i]
-            r = bigstr[1+i:1+i+length(a)-1]
-            if a == r
-                if m == 1
-                    j = round(Int, i/2)
-                    if a[1:j] == a[j+1:end]; break; end
-                end
-                c = i
-                if c > maxCircular;
-                    maxCircular = c;
-                    maxDiv = d
-                end
-                m = 1
-            end
+function generate_candidates()
+    base_iter = 101:999
+    idx = 0
+    # max size of candidate pool
+    numbers = zeros(Int, sum(collect(base_iter)))
+    for i = base_iter
+        j0 = max(i, div(100000, i))
+        for j = j0:999
+            idx += 1
+            numbers[idx] = i*j
         end
     end
-    println("The denominator which generates the longest recurring ")
-    println("cycle is $maxDiv, with length $maxCircular")
+    return filter!(x -> x > 0, numbers)
+end
+
+"""
+strategy:
+    1. create unique array of 3-digit products
+        a 6-digit number, A, satisfies te equation
+        A = 100000a + 10000b + 1000c + 100d + 10e + 1f, for coefficients
+        a, b, c, d, e, f
+    2. filter by those that are palindromes
+    3. select the largest
+"""
+
+function solve()
+    maximum(filter!(is_palindrome, generate_candidates()))
 end
 
 end

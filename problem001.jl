@@ -8,12 +8,12 @@ Find the sum of all the multiples of 3 or 5 below 1000.
 module problem001
 
 function solve()
-    N = 5000
-    s = 0
-    for i = 1:N - 1
-        if (i % 3 == 0) | (i % 5 == 0); s += i; end
-    end
-    println("The sum of all the multiples of 3 or 5 below $N is $s")
+    N = 1000
+    iter = collect(1:N - 1)
+    condition(x) = x % 3 == 0 || x % 5 == 0
+    multiples = filter!(condition, iter)
+    s = sum(multiples)
+    s
 end
 
 end
