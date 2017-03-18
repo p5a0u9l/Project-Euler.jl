@@ -36,7 +36,6 @@ strategy:
     2. filter by those that are palindromes
     3. select the largest
 """
-
 function solve()
     maximum(filter!(is_palindrome, generate_candidates()))
 end

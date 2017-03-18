@@ -15,33 +15,39 @@ include it once in your sum.
 
 module problem032
 
-function pandigital(a, b)
-    tmp = a*b
-    p = 0
-    str = string(string(tmp), string(a), string(b))
-    if length(str) == 9
-        if length(unique(str)) == 9
-            if search(str, '0') == 0
-                p = tmp
-#                 println("$a*$b = $p")
-            end
-        end
-    end
-    p
+"""
+1 digit multiplicand requires 4 digit multiplier
+1*1000 = 1000 => 9 digits
+8*1249 = 9992 => 9 digits
+9*1111 = 9999 => 9 digits
+
+2 digit multiplicand requires 3 digit multiplier
+
+due to commutivity, 3/4 digit multiplicands duplicate search space
+"""
+
+function ispandigi(str)
+    return !contains(str, "0") && length(str) == 9 && allunique(str)
 end
 
 function solve()
-    result = []
-    for a = 1:99
-        for b = 100:2000
-            p = pandigital(a, b)
-            if p > 0
-                push!(result, p)
+    result = Set()
+    # split a iterators into 1/2 digit multiplicand components
+    a_iter = [1:9, 10:99]
+    b_iter = [[1000:floor(Int, 9999/a) for a in a_iter[1]],
+              [100:floor(Int, 999/a) for a in a_iter[1]]]
+
+    for i = [1, 2]
+        for a in a_iter[i]
+            for b in b_iter[i][a_iter[1][digits(a)[i]]]
+                a*b in result && continue
+                if ispandigi(@sprintf("%d%d%d", a, b, a*b))
+                    push!(result, a*b)
+                end
             end
         end
     end
-    result = sum(unique(result))
-    result
+    sum(result)
 end
 
 end

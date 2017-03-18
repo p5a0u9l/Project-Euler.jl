@@ -17,8 +17,13 @@ formed in the same way?
 module problem028
 
 function solve()
-    N = 31
-    direction = [[0 1]; [+1 0]; [0 -1]; [-1 0]; [0 1]]
+    N = 1001
+    direction = [
+                 [0 +1];
+                 [+1 0];
+                 [0 -1];
+                 [-1 0];
+                 [0 +1]]
     A = zeros(Int64, N, N)
     r = c = round(Int, (N-1)/2 + 1)
     i = 1
@@ -35,6 +40,7 @@ function solve()
             end
         end
     end
+    # sum both diagonals (remove duplicated center = 1)
     result = sum(diag(A)) + sum(diag(rotr90(A))) - 1
     result
 end

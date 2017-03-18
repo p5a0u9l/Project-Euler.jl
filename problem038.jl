@@ -16,6 +16,7 @@ concatenated product of an integer with (1,2, ... , n) where n > 1?
 """
 
 module problem038
+include("lib.jl")
 
 function redigi(n, k)
     if k == 1
@@ -23,14 +24,6 @@ function redigi(n, k)
     else
         return concat(n*k, redigi(n, k - 1))
     end
-end
-
-function ispandigi(p)
-    d = digits(p);
-    if length(d) == 9  && length(unique(d)) == 9 && ~in(0, d)
-        return true
-    end
-    return false
 end
 
 function concat(a, b)

@@ -10,17 +10,7 @@ Evaluate the sum of all the amicable numbers under 10000.
 
 module problem021
 using Primes
-
-"""
-adapted from https://rosettacode.org/wiki/Factors_of_an_integer#Julia
-"""
-function d(n)
-    f = [one(n)]
-    for (p, k) in factor(n)
-        f = reduce(vcat, f, [f*p^j for j in 1:k])
-    end
-    return sum(f[1:end - 1])
-end
+include("util.jl")
 
 function solve()
     amicable_sum = 0
@@ -43,13 +33,13 @@ function solve()
         a in blist && continue
 
         # apply sum of proper divisors
-        b = d(a)
+        b = util.divisorsum(a)
 
         # false positive condition
         a == b && continue
 
         # true negative condition
-        d(b) != a && continue
+        util.divisorsum(b) != a && continue
 
         # update memory and amicable_sum
         push!(blist, b)
