@@ -12,5 +12,5 @@ with open("README.md", "w") as rme:
         req = requests.get(url)
         soup = BeautifulSoup(req.text, "html5lib")
         problem_name = soup.findAll('h2')[0].text
-        rme.write("[{}]({}) --- [{}]({})\n".format(problem_name, url, pr, pr))
+        rme.write("[{}]({}) --- [{}]({})\n\n".format(problem_name, url, pr, pr))
 
