@@ -10,25 +10,14 @@ Find the sum of all the positive integers which cannot be written as the sum of 
 
 module problem023
 using Primes
-
-function divisorsum(n)
-    """
-    adapted from https://rosettacode.org/wiki/Factors_of_an_integer#Julia
-    computes the (proper) divisors of a number, ``n``, and return the sum
-    """
-    f = [one(n)]
-    for (p, k) in factor(n)
-        f = reduce(vcat, f, [f*p^j for j in 1:k])
-    end
-    return sum(f[1:end - 1])
-end
+include("lib.jl")
 
 function solve()
     N = 28123
     result = sum(1:23)
 
     # generate list, A, containing all the abundants 12 < n < 28123
-    A = [UInt16(n) for n in 12:N if divisorsum(n) > n]
+    A = [UInt16(n) for n in 12:N if lib.divisorsum(n) > n]
 
     # generate list, P, containing all (unique) abundant sum pairs 24 < m < 28123
     P = zeros(UInt16, sum(1:length(A)))
