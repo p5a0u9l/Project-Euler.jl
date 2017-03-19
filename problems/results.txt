@@ -1,8 +1,0 @@
-
-------------------------------------------------------------
-
-profiling problem023.jl...
-elapsed time 50 runs => 4033.2 ms ± 82.7 ms
-result: 4179871
-@time macro:   4.009528 seconds (141.29 M allocations: 2.199 GB, 4.26% gc time)
-[4179871]
