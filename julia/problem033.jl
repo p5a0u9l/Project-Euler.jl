@@ -14,8 +14,7 @@ find the value of the denominator.
 """
 
 module problem033
-
-DEBUG = false
+include("lib.jl")
 
 function solve()
     mod10(n, d) = n % 10 == 0 || d % 10 == 0
@@ -24,16 +23,10 @@ function solve()
         mod10(n, d) && continue
         num = flipdim(digits(n), 1)
         den = flipdim(digits(d), 1)
-        for i = 2, j = 1
-            if num[2] == den[1]
-                if n/d == num[1]/den[2]
-                    DEBUG && println("$n    $(num[1])")
-                    DEBUG && println("-- = --")
-                    DEBUG && println("$d    $(den[2])")
-                    result[1] *= n
-                    result[2] *= d
-                end
-            end
+        if num[2] == den[1] && n/d == num[1]/den[2]
+            lib.debug("$n    $(num[1])\n-- = --\n$d    $(den[2])")
+            result[1] *= n
+            result[2] *= d
         end
     end
     (result[1]//result[2]).den

@@ -1,22 +1,17 @@
-#!/usr/local/bin/julia
+moduleprintln problem040
 
-# Problem Statement
-println("An irrational decimal fraction is created by concatenating the positive integers:")
-println("0.123456789101112131415161718192021...")
-println("It can be seen that the 12th digit of the fractional part is 1.")
-println("If d_n represents the nth digit of the fractional part, ")
-println("find the value of the following expression.")
-println("d₁ × d₁₀  × d₁₀₀ × d₁₀₀₀ × d₁₀₀₀₀ × d₁₀₀₀₀₀ × d₁₀₀₀₀₀₀\n")
+include("lib.js")
 
 # Solution
 # Generate a string 10ᴺ digits long composed of concatenated positive integers
 # Note: This approach is too slow... the string generation slows down as n gets large
+
 function get_honkin_string(N)
     n = 1
     digit = 1
     honker = ""
     while n <= 10^N
-        honker = join([honker; string(digit)]) 
+        honker = join([honker; string(digit)])
         digit += 1
         n = length(honker)
         if digit % 1000 == 0
@@ -44,7 +39,7 @@ function position(n)
 end
 
 # Search over a restricted space to find inverse of answer.
-function main()
+function solve()
     pows10 = 10.^(0:6)
     d = zeros(length(pows10))
     k = 0
@@ -52,16 +47,16 @@ function main()
     while k < 6
         n += 1
         if in(position(n), pows10)
-            # n is the number starting at position(n), 
+            # n is the number starting at position(n),
             # then d_n is the first digit of number
             d[k + 1] = parse(Int, string(n)[1])
-            println("position(n): $(position(n)), k: $k, n:, $n, d[k+1], $(d[k+1])")
+            lib.debug("position(n): $(position(n)), k: $k, n:, $n, d[k+1], $(d[k+1])")
             k += 1
         end
     end
-    println("Unfortunately, 10⁴ doesn't work for this method, so... through trial and error, d₁₀₀₀₀ = 7")
+    lib.debug("Unfortunately, 10⁴ doesn't work for this method, so... through trial and error, d₁₀₀₀₀ = 7")
     d[7] = 7
-    println("The product of the digits of the idf at powers of 10 from 0 to 6 is $(prod(d))") 
+    lib.debug("The product of the digits of the idf at powers of 10 from 0 to 6 is $(prod(d))")
 end
 
-@time main()
+end

@@ -6,10 +6,14 @@ import re
 base = "https://projecteuler.net/problem="
 
 with open("README.md", "w") as rme:
-    rme.write("# [Project Euler](https://projecteuler.net/) Solutions in [Julia](http://julialang.org/)\n")
-    rme.write("These aren't the best solutions, but they are mine. If you appropriate the answers to get fake points on projecteuler, your mom will be disappointed.\n\n")
-    rme.write("| Problem    | Solution  | Works | Time (ms) |\n")
-    rme.write("| ---------- | --------  | ----- | --------- |\n")
+    rme.write("# [Project Euler](https://projecteuler.net/) \
+                Solutions in [Julia](http://julialang.org/)\n")
+    rme.write("These aren't the best solutions, but they are mine.")
+    rme.write("If you appropriate the answers to get fake points on \
+            projecteuler, your mom will be disappointed.\n\n")
+
+    rme.write("| Problem    | Solution  | Time (ms) |\n")
+    rme.write("| ---------- | --------  | --------- |\n")
 
     for pr in glob("julia/problem*jl"):
         print("summarizing {}...".format(pr))
@@ -21,4 +25,3 @@ with open("README.md", "w") as rme:
         rme.write(
                 "| [{}]({}) | [{}]({}) | 0 |\n".format(
                     problem_name, url, pr, pr))
-

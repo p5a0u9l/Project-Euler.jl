@@ -1,4 +1,5 @@
 module lib
+
 function divisorsum(n)
     """
     adapted from https://rosettacode.org/wiki/Factors_of_an_integer#Julia
@@ -10,4 +11,26 @@ function divisorsum(n)
     end
     return sum(f[1:end - 1])
 end
+
+DEBUG = true
+debug(string) = DEBUG && println(string)
+
+function pandigital(n)
+    digi = digits(n)
+    return length(unique(digi)) == 9 && all(x -> x != 0, digi)
+end
+
+undigits(a) = sum([a[k]*10^(k - 1) for k = 1:length(a)])
+
+function digits(d)
+    result = []
+    (d, r) = divrem(d, 10)
+    push!(result, r)
+    while d > 0
+        (d, r) = divrem(d, 10)
+        push!(result, r)
+    end
+    return flipdim(result, 1)
+end
+
 end
