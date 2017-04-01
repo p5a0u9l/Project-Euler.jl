@@ -2,7 +2,7 @@
 
 commit:
 	@echo "building README..."
-	python summarize.py
+	python readme.py
 
 
 results: 
